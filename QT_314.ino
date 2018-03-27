@@ -33,13 +33,16 @@ void setup()
 	Driving.init(PIN_MOTOR2_PWM, PIN_MOTOR2_DIR, PIN_MOTOR1_PWM, PIN_MOTOR1_DIR);	
 	Driving.drive(MAX_SPEED, DIR_FORWARD);
 	Serial.println("Start driving forward...");
-
-	delay(5000);
-	Driving.halt();
-
+	delay(1000);
+	
 	Driving.drive(MAX_SPEED, DIR_BACKWARD);
 	Serial.println("Start driving backwards...");
+	delay(1000);
+
+	Driving.turn(MAX_SPEED, DIR_LEFT);
+	Serial.println("Start turning left...");
 	delay(5000);
+	
 	Driving.halt();
 	Serial.println("Stop driving...");
 }
@@ -54,7 +57,9 @@ void loop()
 
 void blinkLED() {
 	//Serial.println(toggleLED);
-	digitalWrite(LED_BLUE, toggleLED);
-	toggleLED ^= 1;
-	digitalWrite(LED_RED, toggleLED);
+	if (Driving.isDriving()) {
+		digitalWrite(LED_BLUE, toggleLED);
+		toggleLED ^= 1;
+		digitalWrite(LED_RED, toggleLED);
+	}
 }
