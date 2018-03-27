@@ -12,9 +12,19 @@ void DrivingClass::init(const uint8_t _PinMotorLeftSpeed, const uint8_t _PinMoto
 		->setPinDirection(_PinMotorLeftDirection, MOTOR_LEFT);
 };
 void DrivingClass::drive(uint8_t Speed, bool Direction = DIR_FORWARD){
-	this->setSpeed(Speed, MOTOR_LEFT)->setDirection(Direction, MOTOR_LEFT)->enable(MOTOR_LEFT);
-	this->setSpeed(Speed, MOTOR_RIGHT)->setDirection(Direction, MOTOR_RIGHT)->enable(MOTOR_RIGHT);
+	this->setSpeed(Speed, MOTOR_LEFT)
+		->setDirection(Direction, MOTOR_LEFT)
+		->enable(MOTOR_LEFT);
+	this->setSpeed(Speed, MOTOR_RIGHT)
+		->setDirection(Direction, MOTOR_RIGHT)
+		->enable(MOTOR_RIGHT);
 };
+
+void DrivingClass::halt() {
+	this->disable(MOTOR_LEFT);
+	this->disable(MOTOR_RIGHT);
+};
+
 DrivingClass* DrivingClass::setPinSpeed(const uint8_t _PinSpeed, const uint8_t _Motor) {
 	this->_PinSpeed[_Motor] = _PinSpeed;
 	pinMode(this->_PinSpeed[_Motor], OUTPUT);
@@ -34,9 +44,15 @@ DrivingClass* DrivingClass::setDirection(const bool _Direction, const uint8_t _M
 	return this;
 };
 void DrivingClass::enable(const bool _Motor) {
-	analogWrite(this->_PinSpeed[_Motor], this->_Speed[_Motor]);
+	analogWrite(this->_PinSpeed[_Motor], (this->_Direction[_Motor] == DIR_FORWARD) ? 255 - this->_Speed[_Motor] : this->_Speed[_Motor]);
 	digitalWrite(this->_PinDirection[_Motor], this->_Direction[_Motor]);
 };
+
+void DrivingClass::disable(const bool _Motor) {
+	digitalWrite(this->_PinSpeed[_Motor], 0);
+	digitalWrite(this->_PinDirection[_Motor], 0);
+};
+
 int DrivingClass::limitSpeed(uint8_t Speed) {
 	if (Speed < MIN_SPEED) {
 		return (uint8_t) MIN_SPEED;

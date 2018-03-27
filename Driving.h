@@ -35,6 +35,7 @@ class DrivingClass {
  public:
 	void init(const uint8_t PinMotorLeftSpeed, const uint8_t PinMotorLeftDirection, const uint8_t PinMotorRightSpeed, const uint8_t PinMotorRightDirection);
 	void drive(uint8_t Speed, bool Direction = DIR_FORWARD);
+	void halt();
 	void turnLeft(uint16_t Degree);
 	void turnRight(uint16_t Degree);
 
@@ -50,6 +51,7 @@ class DrivingClass {
 	 DrivingClass* setSpeed(const uint8_t _Speed, const uint8_t _Motor);
 	 DrivingClass* setDirection(const bool _Direction, const uint8_t _Motor);
 	 void enable(const bool _Motor);
+	 void disable(const bool _Motor);
 	 int limitSpeed(uint8_t Speed);
 };
 
