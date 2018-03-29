@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QT_314", "QT_314.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewPing", "..\libraries\NewPing\NewPing.vcxitems", "{CD382B38-0442-48D1-85FC-DBB68CFAD6AD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewPing", "..\libraries\NewPing\NewPing.vcxitems", "{151260F9-C0E5-4718-9E13-7D77383900A8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TimerOne", "..\libraries\TimerOne\TimerOne.vcxitems", "{68BA54AE-B560-47BC-BBE6-C5D86F3E6407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
