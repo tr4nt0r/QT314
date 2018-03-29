@@ -15,7 +15,7 @@ const uint8_t PIN_MOTOR1_DIR = 9;
 const uint8_t PIN_MOTOR2_PWM = 7;
 const uint8_t PIN_MOTOR2_DIR = 6;
 
-int toggleLED = 1;
+volatile bool toggleLED = 1;
 
 NewPing Sonar(TRIGGER_PIN, ECHO_PIN);
 
