@@ -11,7 +11,7 @@ void DrivingClass::init(const uint8_t _PinMotorLeftSpeed, const uint8_t _PinMoto
 		->setPinDirection(_PinMotorLeftDirection, MOTOR_LEFT);
 };
 void DrivingClass::drive(uint8_t Speed, bool Direction = DIR_FORWARD){
-	this->halt();
+	this->halt(DIRCHANGE_DELAY);
 
 	this->setSpeed(Speed, MOTOR_LEFT)
 		->setDirection(Direction, MOTOR_LEFT)
@@ -21,13 +21,17 @@ void DrivingClass::drive(uint8_t Speed, bool Direction = DIR_FORWARD){
 		->enable(MOTOR_RIGHT);
 };
 
-void DrivingClass::halt() {
+void DrivingClass::halt(uint32_t millis = 0) {
 	this->disable(MOTOR_LEFT);
 	this->disable(MOTOR_RIGHT);
+	//stop motors and wait before changing direction
+	if (millis) {
+		delay(millis);
+	}
 }
 
 void DrivingClass::turn(uint8_t Speed, uint8_t Direction) {	
-	this->halt();
+	this->halt(DIRCHANGE_DELAY);
 		
 	this->setSpeed(Speed, MOTOR_LEFT)
 		->setDirection((Direction == DIR_LEFT) ? DIR_BACKWARD : DIR_FORWARD, MOTOR_LEFT)

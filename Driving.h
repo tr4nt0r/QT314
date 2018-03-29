@@ -33,6 +33,11 @@
 #define MIN_SPEED 80
 #endif // !MIN_SPEED
 
+#ifndef DIRCHANGE_DELAY
+#define DIRCHANGE_DELAY 1000
+#endif // !DIRCHANGE_DELAY
+
+
 #define MOTOR_LEFT 0
 #define MOTOR_RIGHT 1
 
@@ -43,7 +48,7 @@ class DrivingClass {
  public:
 	void init(const uint8_t PinMotorLeftSpeed, const uint8_t PinMotorLeftDirection, const uint8_t PinMotorRightSpeed, const uint8_t PinMotorRightDirection);
 	void drive(uint8_t Speed, bool Direction = DIR_FORWARD);
-	void halt();
+	void halt(uint32_t millis = 0);
 	void turn(uint8_t Speed = MAX_SPEED, uint8_t Direction = DIR_LEFT);
 	bool isDriving();
 
